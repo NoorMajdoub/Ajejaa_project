@@ -19,7 +19,16 @@ A pipeline that collects multi-source data and feeds it into an LLM (or ML model
 * Real-time in-trip rerouting alerts (hands-free via TTS)
 
 ---
+## Idea: AI Agent with Tools
 
+LangChain: We wrap each API as a tool
+The tools would be:
+Weather tool → OpenWeather API
+Traffic tool → TomTom API (or Overpass if TomTom fails)
+Social tool → Scrape / summarize tweets / posts (with fallback to LLM if scraping fails)
+Maps tool → Google Maps Directions API
+
+---
 ## 🔁 Pipeline Logic
 
 1. **Data Collection**
