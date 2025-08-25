@@ -3,7 +3,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from main import get_prompttext 
 import requests
 from pydantic import BaseModel
-
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import os
 import json
