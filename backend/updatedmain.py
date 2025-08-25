@@ -47,10 +47,21 @@ def get_weather(city: str):
         return "Weather info not available."
     return f"{r['main']['temp']}°C, {r['weather'][0]['description']}"
 
-#get traffic info (not fully working tbh)
-def get_traffic(lat: float, lon: float):
+
+def get_coordinates(address: str):
+    url = "https://maps.googleapis.com/maps/api/geocode/json"
+    params = {"address": address, "key": GOOGLE_MAPS_API_KEY}
+    r = requests.get(url, params=params).json()
+    if r["status"] == "OK":
+        loc = r["results"][0]["geometry"]["location"]
+        return loc["lat"], loc["lng"]
+    else:
+        return None, None
+#get traffic info (works on and off)
+def get_traffic(city:str):
     API_KEY = ""
     url = "https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json"
+    lat,lng=get_coordinates(city)
     params = {"point": f"{lat},{lon}", "key": API_KEY}
     r = requests.get(url, params=params).json()
     if "flowSegmentData" in r:
@@ -59,7 +70,7 @@ def get_traffic(lat: float, lon: float):
         return f"Traffic speed: {speed} km/h on road class {road}"
     return f"Traffic data error: {r}"
 
-#google maps tool
+#google maps tool  (no more cause no freee trial over)
 def get_directions(origin: str, destination: str):
     url = f"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={GOOGLE_MAPS_API_KEY}"
     r = requests.get(url).json()
@@ -98,19 +109,11 @@ async def get_text_summary(data: Adress):
     prompt = get_prompttext(data.fromm, data.dest, data.vehicule, data.time)
     result = await run_agent_async(prompt)
     return {"result": result}
-    
-async def get_response(loc,des,veh,time):
 
-    model = genai.GenerativeModel(MODEL_NAME)
-    chat = model.start_chat()
-    #get dat res babayyyyyyy
-    instruction =get_prompttext(loc,des,veh,time)
-    print(instruction)
-    response = await chat.send_message_async(instruction)
-    result = response.text
 
-  
-    return result
+
+
+
 class Adress(BaseModel):
     fromm: str
     dest: str
@@ -121,6 +124,16 @@ class Adress(BaseModel):
 async def get_text_summary(data: Adress):
     #result="why god"
     result = await  get_response(data.fromm,data.dest,data.vehicule,data.time)
+    return result
+async def get_response(loc,des,veh,time):
+
+    model = genai.GenerativeModel(MODEL_NAME)
+    chat = model.start_chat()
+    #get dat res babayyyyyyy
+    instruction =get_prompttext(loc,des,veh,time)
+    print(instruction)
+    response = await chat.send_message_async(instruction)
+    result = response.text
     return result
 
 
