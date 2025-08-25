@@ -9,6 +9,8 @@ SmartRoute AI is an intelligent assistant for transportation planning designed t
 
 This system leverages **real-time data**, **LLM reasoning**, and **driver-friendly notifications** to suggest **safe**, **fast**, and **place-aware** routes — all while adapting to changes mid-journey.
 
+Demo link : https://drive.google.com/file/d/1wGOxAkt3FZAX9O1KahsqEmBDJsN4Bm_-/view?usp=sharing
+
 ---
 
 ##  Core Idea
