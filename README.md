@@ -27,6 +27,7 @@ Weather tool → OpenWeather API
 Traffic tool → TomTom API (or Overpass if TomTom fails)
 Social tool → Scrape / summarize tweets / posts (with fallback to LLM if scraping fails)
 Maps tool → Google Maps Directions API
+Reasoning tool → Gemini/OpenAI LLM
 
 ---
 ## 🔁 Pipeline Logic
