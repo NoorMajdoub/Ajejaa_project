@@ -8,6 +8,9 @@ import asyncio
 from fastapi import FastAPI,Query
 from fastapi.middleware.cors import CORSMiddleware
 
+#main.py simple version for testing
+
+
 load_dotenv() 
 
 api_key = os.getenv("GOOGLE_API_KEY")
@@ -17,7 +20,7 @@ genai.configure(api_key=api_key)
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # or ["*"] for dev
+    allow_origins=["http://localhost:3000"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
