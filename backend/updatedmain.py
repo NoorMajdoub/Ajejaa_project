@@ -14,11 +14,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv() 
 
+
+
 api_key = os.getenv("GOOGLE_API_KEY")
 MODEL_NAME= os.getenv("MODEL_NAME")
 #weather api
-api_key = os.getenv("GOOGLE_API_KEY")
-MODEL_NAME= os.getenv("MODEL_NAME")
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
