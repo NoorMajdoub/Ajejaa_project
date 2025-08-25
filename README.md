@@ -3,7 +3,7 @@
 
 **Real-Time AI-Powered Route Optimization for Delivery and Field Service Vehicles**
 
-## 🚀 Project Overview
+##  Project Overview
 
 SmartRoute AI is an intelligent assistant for transportation planning designed to reduce traffic contribution, fuel costs, and wasted time for companies operating delivery and service fleets.
 
@@ -11,7 +11,7 @@ This system leverages **real-time data**, **LLM reasoning**, and **driver-friend
 
 ---
 
-## 📌 Core Idea
+##  Core Idea
 
 A pipeline that collects multi-source data and feeds it into an LLM (or ML model) to generate optimal and adaptive routing suggestions. The system provides:
 
@@ -30,7 +30,7 @@ Maps tool → Google Maps Directions API
 Reasoning tool → Gemini/OpenAI LLM
 
 ---
-## 🔁 Pipeline Logic
+##  Pipeline Logic
 
 1. **Data Collection**
    Gather data from:
@@ -88,18 +88,21 @@ Reasoning tool → Gemini/OpenAI LLM
 
 ---
 
-## 🧭 Future Directions
+##  Future Directions
 
 * Train custom models for:
 
   * Risk-aware path planning
   * Road type classification using image data
   * Multi-agent delivery scheduling
-* Integration with delivery CRM tools (FleetOps, etc.)
+  * Optimization % estimation
+* Find better apis for getting roads /traffic info cause the ones used in the demo are not very reliable
+* Find alternative for google maps cause free trial over
+
 
 ---
 
-## 🤝 Target Users
+##  Target Users
 
 * 🏢 **Delivery & logistics companies**
 * 🧰 **Field service providers** (electricians, repair teams, etc.)
@@ -107,6 +110,4 @@ Reasoning tool → Gemini/OpenAI LLM
 
 ---
 
-
-```
 
