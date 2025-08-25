@@ -68,7 +68,7 @@ def get_directions(origin: str, destination: str):
     steps = r["routes"][0]["legs"][0]["steps"]
     directions = []
     for i, step in enumerate(steps, 1):
-        txt = step["html_instructions"]
+        txt = BeautifulSoup(step["html_instructions"], "html.parser").get_text()
         dist = step["distance"]["text"]
         directions.append(f"{i}. {txt} ({dist})")
     return "\n".join(directions)
@@ -86,7 +86,19 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=api_key
 )
 agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+from asyncio import get_running_loop
 
+async def run_agent_async(prompt: str):
+    loop = get_running_loop()
+    result = await loop.run_in_executor(None, lambda: agent.run(prompt))
+    return result
+
+@app.post("/data")
+async def get_text_summary(data: Adress):
+    prompt = get_prompttext(data.fromm, data.dest, data.vehicule, data.time)
+    result = await run_agent_async(prompt)
+    return {"result": result}
+    
 async def get_response(loc,des,veh,time):
 
     model = genai.GenerativeModel(MODEL_NAME)
@@ -105,7 +117,7 @@ class Adress(BaseModel):
     time: str
     vehicule: str
     #location , dest , veh type
-@app.post("/data")
+@app.post("/data2")
 async def get_text_summary(data: Adress):
     #result="why god"
     result = await  get_response(data.fromm,data.dest,data.vehicule,data.time)
