@@ -21,7 +21,7 @@ A pipeline that collects multi-source data and feeds it into an LLM (or ML model
 * Real-time in-trip rerouting alerts (hands-free via TTS)
 
 ---
-## Idea: AI Agent with Tools
+## Idea: Using an AI agent
 
 LangChain: We wrap each API as a tool
 The tools would be:
